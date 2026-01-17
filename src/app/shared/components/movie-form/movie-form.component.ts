@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MovieService } from '../../services/movie.service';
 import { Imovie } from '../../model/movie';
+import { SnackBarService } from '../../services/snack-bar.service';
 
 @Component({
   selector: 'app-movie-form',
@@ -11,7 +12,9 @@ import { Imovie } from '../../model/movie';
 export class MovieFormComponent implements OnInit {
 
   @ViewChild('movieForm') movieForm!: NgForm
-  constructor(private _movieService: MovieService) { }
+  constructor(private _movieService: MovieService,
+    private _snackBar: SnackBarService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +27,7 @@ export class MovieFormComponent implements OnInit {
       }
       this._movieService.onAdd(createObj)
       this.movieForm.reset()
+      this._snackBar.showMessege(` movie Added SuccessFully`)
     }
   }
 
