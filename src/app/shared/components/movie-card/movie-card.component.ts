@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Imovie } from '../../model/movie';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-movie-card',
@@ -8,11 +9,14 @@ import { Imovie } from '../../model/movie';
 })
 export class MovieCardComponent implements OnInit {
 
-  @Input() movieObj! : Imovie
+  @Input() movieObj!: Imovie
 
-  constructor() { }
+  constructor(private _movieService: MovieService) { }
 
   ngOnInit(): void {
   }
 
+  onRemove(id: number) {
+    this._movieService.onRemove(id)
+  }
 }
