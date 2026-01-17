@@ -5,18 +5,19 @@ import { MovieService } from '../../services/movie.service';
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss']
+  styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent implements OnInit {
+  @Input() movieObj!: Imovie;
 
-  @Input() movieObj!: Imovie
+  constructor(private _movieService: MovieService) {}
 
-  constructor(private _movieService: MovieService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onRemove(id: number) {
-    this._movieService.onRemove(id)
+    this._movieService.onRemove(id);
+  }
+  onEdit(movie: Imovie) {
+    this._movieService.dataEdit$.next(movie);
   }
 }
